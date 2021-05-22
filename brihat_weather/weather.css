@@ -1,0 +1,657 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+#app_logo {
+  z-index: 1;
+  padding-top: 10px;
+  padding-left: 10px;
+  float: left;
+  -webkit-app-region: drag;
+  width: 150px;
+  height: 37px;
+  font-family: monospace;
+  line-height: 24px;
+  font-size: 14px;
+  font-weight: bold;
+  background: url('app_logo.svg') 10px 10px;
+  background-repeat: no-repeat;
+  background-size: auto 27px;
+}
+
+#datetime {
+  position: fixed;
+  top: 0;
+  padding-top: 10px;
+  font-size: 14px;
+  font-family: monospace;
+  color: green;
+  text-align: center;
+  width: 100%;
+  background-color: white;
+  z-index: -1;
+  user-select: none;
+  /* -webkit-app-region: drag; */
+}
+
+.title_buttons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  /* line-height: 25px; */
+}
+
+#titlebarbtns {
+  /* visibility: hidden; */
+  opacity: 0.1;
+  z-index: 1;
+  padding-top: 10px;
+  padding-right: 10px;
+  float: right;
+  -webkit-app-region: drag;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+#titlebarbtns button {
+  /* font-size: 20px; */
+  font-family: sans-serif;
+  border: none;
+  width: 25px;
+  height:25px;
+  -webkit-app-region: no-drag;
+}
+
+#maxbtn {
+  color: gray;
+}
+
+#maxbtn:hover {
+  background-color: white;
+  color: gray;
+}
+
+#minbtn {
+  color: green;
+}
+
+#minbtn:hover {
+  background-color: green;
+  color: white;
+}
+
+#closebtn {
+  color: red;
+}
+
+#closebtn:hover {
+  background-color: red;
+  color: white;
+}
+
+#myinfo {
+  color: darkcyan;
+}
+
+#myinfo:hover {
+  background-color: darkcyan;
+  color: white;
+}
+
+#local_city {
+  color: lightgray;
+  font-size: 10px;
+}
+
+body {
+  overflow: auto;
+}
+
+#div_content {
+  position: absolute;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#div_content, #rain_parent, #snow_parent {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: sans-serif;
+  line-height: 28px;
+  white-space: nowrap;
+  color: darkcyan;
+}
+
+#pollution {
+  font-size: 16px;
+}
+
+#pollution:hover {
+  font-size: 18px;
+}
+
+#iupdate, #pupdate, .pdate_250 {
+  font-size: 10px;
+  font-weight: normal;
+  white-space: nowrap;
+  color: gray;
+  padding-bottom: 20px;
+}
+
+#pupdate {
+  padding: 0;
+}
+
+.load {
+  animation: spin 1s linear infinite;
+}
+
+#forcasting {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 46px;
+}
+
+#refresh {
+  color: darkcyan;
+  transition-duration: 0.3s;
+}
+
+#refresh:hover {
+  color: green;
+  animation: spin 1s linear;
+  cursor: pointer;
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform:rotate(360deg);
+  }
+}
+
+span {
+  font-weight: normal;
+  color: dimgray;
+}
+
+#info {
+  color: maroon;
+  align-items: center;
+}
+
+#weather_icon {
+  width: 100px;
+  height: auto;
+}
+
+input[type="text"], select {
+  text-align: center;
+  border-top-style: hidden;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  border-bottom-style: groove;
+  border-color: lightgray;
+  font-family: sans-serif;
+  font-style: oblique;
+  width: 175px;
+  height: 25px;
+}
+
+input[type="text"]:hover, select:hover {
+  border-color: red;
+  color: maroon;
+}
+
+button {
+  background-color: white;
+  font-variant: small-caps;
+  color: green;
+  border-radius: 2px;
+  border: 1px solid green;
+  transition-duration: 0.3s;
+  width: 60px;
+  height: 25px;
+}
+
+button:hover {
+  background-color: green;
+  color: white;
+}
+
+#btn {
+  width: 50px;
+}
+
+#btnforecast {
+  width: 70px;
+}
+
+#footer {
+  text-align: center;
+  font-family: monospace;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+#footer a {
+  text-decoration: none;
+  color: teal;
+}
+
+#user_info {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  font-family: serif;
+  font-size: 12px;
+  color: lightgray;
+  user-select: none;
+}
+
+#user_ip {
+  padding-left: 5px;
+  position: fixed;
+  bottom: 0;
+  text-align: left;
+}
+
+#user_geolocation {
+  padding-right: 5px;
+  position: fixed;
+  bottom: 0;
+  text-align: right;
+  width: 100%;
+}
+
+/* WEATHER FORECAST CSS */
+/* The popup (background) */
+.forecast, .pollution_info {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 65px;
+  left: 50%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  max-width: 900px;
+  transform: translate(-50%);
+}
+
+#myinfo_popup {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0, 0.4);
+  max-width: 900px;
+  transform: translate(-50%, -50%);
+}
+
+.pollution_info {
+  width: 80%;
+}
+
+/* popup content */
+.forecast-content, .pollution-content, #myinfo_content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0 10px 10px 10px;
+  border: 1px solid #888;
+  width: 90%;
+  height: 95%;
+  overflow: auto;
+}
+
+#myinfo_content {
+  width: 50%;
+  height: auto;
+  left: 50%;
+  top: 50%;
+  position: fixed;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  min-width: 350px;
+  /* overflow: auto; */
+}
+
+/* close Button */
+.close, .pollution_close, #myinfo_close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 26px;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.close:hover,
+.close:focus,
+.pollution_close:hover,
+.pollution_close:focus,
+#myinfo_close:hover,
+#myinfo_close:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#myinfo_div {
+  text-align: center;
+  font-family: serif;
+  font-size: 18px;
+  background: url('watermark.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: auto 70%;
+}
+
+#fheader, #pheader {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+#myinfo_app {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 8px 0px 5px 15px;
+  color: darkcyan;
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+#myinfo_author {
+  color: darkgreen;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#weather_credit {
+  color: lightgray;
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#weather_credit:hover {
+  cursor: pointer;
+  color: darkgray;
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#fcontent, #pcontent {
+  overflow: visible;
+  top: 500px;
+}
+
+#pcontent {
+  color: darkcyan;
+  font-weight: bold;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+#pcontent span {
+  font-weight: bold;
+}
+
+.ftime, .ptime {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: sans-serif;
+  line-height: 24px;
+  white-space: nowrap;
+  color: darkcyan;
+}
+
+.fdata, .pdata {
+  font-size: 13px;
+  font-weight: bold;
+  font-family: sans-serif;
+  line-height: 24px;
+  white-space: nowrap;
+  color: dimgray;
+  padding-left: 15px;
+}
+
+#ftitle, #ptitle {
+  text-align: center;
+  font-family: sans-serif;
+  color: green;
+  text-transform: uppercase;
+}
+
+#flocation, #plocation {
+  text-align: center;
+  font-family: monospace;
+  color: darkgray;
+  font-size: 12px;
+}
+
+#wforecast img{
+  height: 49px;
+  width: 50px;
+  float: right;
+}
+
+#aqi_1 {
+  color: green;
+}
+
+#aqi_2 {
+  color: lime;
+}
+
+#aqi_3 {
+  color: orange;
+}
+
+#aqi_4 {
+  color: red;
+}
+
+#aqi_5 {
+  color: maroon;
+}
+
+#credit, #credit a {
+  text-decoration: none;
+  font-size: 10px;
+  font-family: sans-serif;
+  white-space: nowrap;
+  color: lightgray;
+  text-align: center;
+}
+
+#credit:hover, #credit a:hover {
+  color: dimgray;
+}
+
+.perror {
+  color: darkcyan;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+.perrdesc {
+  color: lightgray;
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+hr {
+  height: 2px;
+  width: 100%;
+  color: gray;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#fpressure_show, #fhumidity_show, #fwind_show {
+  display: none;
+  font-weight: bold;
+}
+
+.wide_screen {
+  display: none;
+}
+
+.pwidth_350 {
+  color: darkcyan;
+}
+
+@media only screen and (min-width: 850px) {
+  #div_content {
+    position: absolute;
+    width: 90%;
+    height: 60%;
+    margin: 0 auto;
+  }
+
+  #wide {
+    float: left;
+    width: 40%;
+    padding: 50px;
+    text-align: center;
+  }
+
+  #weather_icon {
+    height: 200px;
+    width: auto;
+  }
+
+  #weather_info {
+    overflow-x: auto;
+  }
+
+  .wide_screen {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  #fpressure_show {
+   display: inline;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  #fhumidity_show {
+   display: inline;
+  }
+}
+
+@media only screen and (min-width: 450px) {
+  #fwind_show {
+    display: inline;
+  }
+}
+
+#narrow {
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 425px) {
+  .pwidth_350 {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  #narrow {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 359px) {
+  #narrow_width {
+    display: none;
+  }
+}
+
+.width_240 {
+  color: darkcyan;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 320px) {
+  .width_240, .width_240_data {
+    display: none;
+  }
+
+  .wide_screen {
+    display: block;
+  }
+
+  #wide {
+    /* float: left; */
+    width: 100%;
+    /* padding: 50px; */
+    text-align: center;
+  }
+}
+
+@media only screen and (max-height: 350px) {
+  #weather_icon {
+    height: 75px;
+    width: auto;
+  }
+}
+
+.fwidth_240 {
+  color: darkcyan;
+  font-weight: bold;
+}
+
+.ptitle_275 {
+  color: green;
+}
+
+@media only screen and (max-width: 275px) {
+  .ptitle_275 {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 250px) {
+  #pcontent {
+    font-size: 12px;
+  }
+
+  .pdate_250 {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 200px) {
+  .fwidth_240 {
+    display: none;
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "name": "BrihatCalendar",
+  "version": "1.0.0",
+  "description": "AD BS NS Interchangable Calendar with Lunar Information",
+  "copyright": "Brihat Ratna Bajracharya",
+  "icon": "brihaticon.ico",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "keywords": [
+    "brihat",
+    "calendar",
+    "AD",
+    "BS",
+    "NS",
+    "Lunar"
+  ],
+  "author": "Brihat Ratna Bajracharya",
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "electron": "^12.0.7"
+  },
+  "dependencies": {
+    "electron-reload": "^1.5.0",
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "brihaticon.ico",
+        "appCopyright": "Brihat Ratna Bajracharya",
+        "win32metadata":{
+          "ProductName": "Brihat Calendar",
+          "CompanyName": "Brihat Ratna Bajracharya"
+        }
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "BrihatCalendar"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}

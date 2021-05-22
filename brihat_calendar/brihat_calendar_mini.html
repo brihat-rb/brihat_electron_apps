@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Brihat Calendar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./brihat_calendar_mini.css" />
+    <link rel="icon" href="logo.svg">
+  </head>
+
+  <body>
+    <div id="calendar_mini" align="center">
+      <div id="calendar_mini_ns"></div>
+      <div id="calendar_mini_bs"></div>
+      <div id="calendar_mini_sns"></div>
+      <div id="calendar_mini_ad"></div>
+    </div>
+
+    <!-- Custom Scripts -->
+    <script src="NS.js"></script>
+    <script src="NS_AD.js"></script>
+    <script src="NS_BS.js"></script>
+    <script src="AD_BS.js"></script>
+    <script src="index.js"></script>
+    <script src="brihat_calendar_mini.js"></script>
+    <script>
+      // var remote = require('electron').remote;
+      var { ipcRenderer } = require('electron');
+
+      document.getElementById('calendar_mini').addEventListener("dblclick", (event) => {
+        ipcRenderer.sendSync('show-full-calendar');
+        // win.loadURL('./brihat_calendar.html');
+        // win.show();
+      });
+    </script>
+    <script>
+    function hourly_reload() {
+      let minutes = new Date().getMinutes();
+      if (minutes == 0) {
+        location.reload();
+      }
+      setTimeout("hourly_reload()", 60 * 1000);
+    }
+    hourly_reload();
+    </script>
+  </body>
+</html>
