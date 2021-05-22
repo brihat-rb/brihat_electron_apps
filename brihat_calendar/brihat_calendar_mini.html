@@ -25,7 +25,7 @@
     <script src="brihat_calendar_mini.js"></script>
     <script>
       // var remote = require('electron').remote;
-      var { ipcRenderer } = require('electron');
+      // var { ipcRenderer } = require('electron');
 
       // document.getElementById('calendar_mini').addEventListener("dblclick", (event) => {
       //   ipcRenderer.sendSync('show-full-calendar');
@@ -36,8 +36,10 @@
     <script>
     function hourly_reload() {
       let minutes = new Date().getMinutes();
-      if (minutes == 0) {
+      let seconds = new Date().getSeconds();
+      if (minutes == 0 && seconds == 0) {
         location.reload();
+        console.log("reloaded");
       }
       setTimeout("hourly_reload()", 60 * 1000);
     }

@@ -39,6 +39,8 @@
 #javascript_form {
   display: flex;
   margin: 10px;
+  width: 75%;
+  align-self: center;
   flex-direction: column;
 }
 
@@ -62,6 +64,7 @@ input[type="text"]:hover, textarea:hover {
 }
 
 textarea {
+  overflow: hidden;
   height: 60px; /* Note this is the same height as the placeholders line-height */
 }
 

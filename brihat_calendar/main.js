@@ -91,9 +91,9 @@ function createWindow () {
 
   const mainWindow = new BrowserWindow({
     width: 300,
-    height: 70,
+    height: 71,
     x: width - 300,
-    y: parseInt((height - 70)) - 30,
+    y: parseInt((height - 71)) - 30,
     icon: path.join(__dirname, 'brihaticon.png'),
     maximizable: false,
     frame: false,

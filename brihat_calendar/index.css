@@ -57,6 +57,10 @@ table {
   empty-cells: hide;
 }
 
+#monthAndYear b {
+  -webkit-app-region: drag;
+}
+
 table td:hover {
   /* background-color: rgba(0,0,0,.075); */
   background-color: lightgray;
