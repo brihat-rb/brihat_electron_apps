@@ -7,6 +7,10 @@ const path = require('path')
 
 // window.remote = require('electron').remote
 
+require('electron-reload')(__dirname, {
+  electron: path.join(__dirname, 'node_modules', '.bin', 'electron-forge.cmd')
+});
+
 let mainWindow = null
 let tray = null
 
