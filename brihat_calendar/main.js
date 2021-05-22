@@ -128,7 +128,7 @@ function createWindow () {
     width: 439,
     height: 700,
     show: false,
-    parent: mainWindow,
+    // parent: mainWindow,
     // x: width - 350,
     // y: parseInt((height - 700) / 2) - 10,
     icon: path.join(__dirname, 'brihaticon.png'),

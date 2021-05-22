@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <title>Brihat Calendar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="./jscss/bootstrap.min.css">
     <link rel="stylesheet" href="./index.css" />
     <link rel="stylesheet" href="./index_cal_conv.css" />
     <link rel="stylesheet" href="./index_details.css" />
     <link rel="icon" href="logo.svg">
   </head>
 
-  <body onbeforeunload="return on_unload()">
+  <body>
     <div class="container-md" align="center">
       <div class="card">
-        <div id="titlebarbtns"><button id="closebtn" disabled>&times;</button></div>
+        <!-- <div id="titlebarbtns"><button id="closebtn" disabled>&times;</button></div> -->
         <h3 class="card-header" id="monthAndYear"></h3>
         <table class="table table-bordered table-responsive-md mx-auto" id="calendar">
           <thead><tr id="table_header_row" align="center"></tr></thead>
@@ -33,8 +33,8 @@
 
         <!-- <button class="btn btn-outline-dark btn-sm" id="print" onclick="print()">&#x2399; PRINT THIS MONTH &#x2399;</button> -->
 
-        <form id="brihat_calendar_date_jumper" style="display :none;" class="form-inline">
-          <label class="col-sm-2" for="month">Go To: </label>
+        <form id="brihat_calendar_date_jumper" class="form-inline">
+          <!-- <label class="col-sm-2" for="month">Go To: </label> -->
           <select class="form-control col-sm-5" name="month" id="month" onchange="jump()"></select>
 
           <label for="year"></label>
@@ -66,7 +66,7 @@
               <input type="submit" id="js_send" value="SEND SUGGESTION" />
 
               <!-- not required, but we'd appreciate it if you'd link to us somewhere on your site -->
-              <span id="credit">Powered by <a href="https://postmail.invotes.com" target="_blank">PostMail</a></span>
+              <!-- <span id="credit">Powered by <a href="https://postmail.invotes.com" target="_blank">PostMail</a></span> -->
             </form>
 
             <!-- Modal footer -->
@@ -95,9 +95,9 @@
     <script src="index_details.js"></script>
     <script src="infos.js"></script>
     <script src="suggest_edit.js"></script>
-    <script src="swipe_actions.js"></script>
-    <script src="jspdf.min.js"></script>
-    <script src="save_to_pdf.js"></script>
+    <!-- <script src="swipe_actions.js"></script> -->
+    <!-- <script src="jspdf.min.js"></script> -->
+    <!-- <script src="save_to_pdf.js"></script> -->
     <script src="mousetrap.min.js"></script>
 
     <script>
@@ -112,17 +112,13 @@
     }
     window.onresize = on_window_resize;
     on_window_resize()
-
-    function on_unload() {
-      return 'Are you sure you want to leave?';
-    };
     </script>
 
     <!-- Optional JavaScript for bootstrap -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="jscss/jquery-3.3.1.slim.min.js"></script>
+    <script src="jscss/popper.min.js"></script>
+    <script src="jscss/bootstrap.min.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-99TBHKPHDP"></script>
@@ -147,9 +143,9 @@
       //   // win.show();
       // });
 
-      document.getElementById("closebtn").addEventListener("click", (event) => {
-        ipcRenderer.sendSync('close-full-calendar');
-      });
+      // document.getElementById("closebtn").addEventListener("click", (event) => {
+      //   ipcRenderer.sendSync('close-full-calendar');
+      // });
 
     </script>
 
