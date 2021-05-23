@@ -1,6 +1,6 @@
 // Modules to control application life and create native browser window
 if (require('electron-squirrel-startup')) return;
-const {app, BrowserWindow, Tray, Menu, screen} = require('electron')
+const {app, BrowserWindow, Tray, Menu, screen, dialog} = require('electron')
 const path = require('path')
 const { ipcMain } = require('electron')
 
@@ -193,6 +193,14 @@ function createWindow () {
 
   var contextMenu = Menu.buildFromTemplate([
     {
+      label: 'Always on Top',
+      type: 'checkbox',
+      checked: 'true',
+      click: function () {
+        mainWindow.setAlwaysOnTop(contextMenu.items[0].checked)
+      }
+    },
+    {
       label: 'Show/Hide Date', click: function () {
         if(mainWindow.isMinimized()) {
             mainWindow.restore()
@@ -226,12 +234,28 @@ function createWindow () {
       }
     },
     {
+      label: 'About', click: function () {
+        const options = {
+          type: 'info',
+          buttons: ["&Close"],
+          title: 'About',
+          icon: path.join(__dirname, 'src/assets/brihaticon.png'),
+          message: 'Brihat Calendar (v1.0)',
+          noLink: true,
+          normalizeAccessKeys: true,
+          detail: 'Available Calendars:\n    Nepal Sambat (Lunar)\n    Bikram Sambat\n    Nepal Sambat (Solar)\n    Gregorian Calendar\n\nAuthor:\nBrihat Ratna Bajracharya\nbrihatbajracharya@gmail.com\n2021'
+        }
+        dialog.showMessageBox(null, options)
+      }
+    },
+    {
       label: 'Quit', click: function () {
         app.isQuiting = true
         app.quit()
       }
     }
   ])
+  
   const icon_path = path.join(__dirname, 'src/assets/brihaticon.png');
   // tray = new Tray('./brihaticon.png')
   tray = new Tray(icon_path)
