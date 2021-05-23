@@ -90,11 +90,11 @@ function createWindow () {
   let height = display.bounds.height;
 
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 571,
+    width: 300,
+    height: 71,
     x: width - 300,
     y: parseInt((height - 71)) - 30,
-    icon: path.join(__dirname, 'brihaticon.png'),
+    icon: path.join(__dirname, 'src/assets/brihaticon.png'),
     maximizable: false,
     frame: false,
     skipTaskbar: true,
@@ -104,12 +104,12 @@ function createWindow () {
       nodeIntegration: true,
       enableRemoteModule: true,
       contextIsolation: false,
-      // devTools: false,
+      devTools: false,
     }
   })
 
   // and load the brihat_calendar_mini.html of the app and hide
-  mainWindow.loadFile('brihat_calendar_mini.html')
+  mainWindow.loadFile('src/brihat_calendar_mini.html')
   // mainWindow.hide()
 
   // Open the DevTools.
@@ -117,7 +117,7 @@ function createWindow () {
 
   // hide the default menu bar that comes with the browser window
   mainWindow.setMenuBarVisibility(null);
-  // mainWindow.setResizable(false);
+  mainWindow.setResizable(false);
 
   mainWindow.on('minimize',function(event){
     event.preventDefault();
@@ -131,7 +131,7 @@ function createWindow () {
     // parent: mainWindow,
     // x: width - 350,
     // y: parseInt((height - 700) / 2) - 10,
-    icon: path.join(__dirname, 'brihaticon.png'),
+    icon: path.join(__dirname, 'src/assets/brihaticon.png'),
     darkTheme: true,
     maximizable: false,
     frame: false,
@@ -146,7 +146,7 @@ function createWindow () {
       devTools: false,
     }
   })
-  full_calendar.loadFile('brihat_calendar.html')
+  full_calendar.loadFile('src/brihat_calendar.html')
   // full_calendar.show();
   full_calendar.setMenuBarVisibility(false)
   full_calendar.setResizable(false)
@@ -232,7 +232,7 @@ function createWindow () {
       }
     }
   ])
-  const icon_path = path.join(__dirname, '/brihaticon.png');
+  const icon_path = path.join(__dirname, 'src/assets/brihaticon.png');
   // tray = new Tray('./brihaticon.png')
   tray = new Tray(icon_path)
   tray.setToolTip('Brihat Calendar v1.0')

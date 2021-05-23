@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "AD BS NS Interchangable Calendar with Lunar Information",
   "copyright": "Brihat Ratna Bajracharya",
-  "icon": "brihaticon.ico",
+  "icon": "src/assets/brihaticon.ico",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -38,7 +38,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "brihaticon.ico",
+        "icon": "src/assets/brihaticon.ico",
         "appCopyright": "Brihat Ratna Bajracharya",
         "win32metadata": {
           "ProductName": "Brihat Calendar",
