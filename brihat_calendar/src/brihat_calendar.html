@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Brihat Calendar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./js/third_party/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/index_cal_conv.css" />
+    <link rel="stylesheet" href="./css/index_details.css" />
+    <link rel="icon" href="logo.svg">
+  </head>
+
+  <body>
+    <div class="container-md" align="center">
+      <div class="card">
+        <!-- <div id="titlebarbtns"><button id="closebtn" disabled>&times;</button></div> -->
+        <h3 class="card-header" id="monthAndYear"></h3>
+        <table class="table table-bordered table-responsive-md mx-auto" id="calendar">
+          <thead><tr id="table_header_row" align="center"></tr></thead>
+          <tbody align="center" id="calendar-body"></tbody>
+        </table>
+
+        <div class="form-inline">
+          <button class="btn btn-outline-dark btn-sm" id="previous" onclick="previous()">&laquo; PREV </button>&nbsp;
+          <button class="btn btn-info" id="default" onclick="location.reload()">TODAY</button>&nbsp;
+          <button class="btn btn-outline-dark btn-sm" id="next" onclick="next()">NEXT &raquo;</button>
+        </div>
+
+        <!-- <div>
+          <a id="solarnsconverter" href="https://brihat-rb.github.io/solarnsconverter/solarnsconverter.html"> &raquo; Solar Nepal Sambat Converter &laquo; </a>
+        </div> -->
+
+        <!-- <button class="btn btn-outline-dark btn-sm" id="print" onclick="print()">&#x2399; PRINT THIS MONTH &#x2399;</button> -->
+
+        <form id="brihat_calendar_date_jumper" class="form-inline">
+          <!-- <label class="col-sm-2" for="month">Go To: </label> -->
+          <select class="form-control col-sm-5" name="month" id="month" onchange="jump()"></select>
+
+          <label for="year"></label>
+          <select class="form-control col-sm-5" name="year" id="year" onchange="jump()"></select>
+        </form>
+      </div>
+
+      <!-- For Date Details onClick -->
+      <div class="modal" id="myModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header text-center d-block">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" id="modal_title">Loading Date ...</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" id="modal_body">
+              Loading Details ...
+            </div>
+
+            <span id="suggestion" onclick="show_suggest_form()">Suggest an edit</span>
+            <span id="suggestion_info"></span>
+            <form id="javascript_form">
+              <input type="text" name="subject" placeholder="Subject" id="suggest_subject"/>
+              <textarea name="text" placeholder="Message" id="suggest_message"></textarea>
+              <input type="submit" id="js_send" value="SEND SUGGESTION" />
+
+              <!-- not required, but we'd appreciate it if you'd link to us somewhere on your site -->
+              <!-- <span id="credit">Powered by <a href="https://postmail.invotes.com" target="_blank">PostMail</a></span> -->
+            </form>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <span class="mr-auto" id='modal_author'>brihat (brihatbajracharya@gmail.com)</span>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- USER INOFS (HIDDEN via CSS) -->
+      <!-- <div id="user_info"></div>
+      <div id="g_info"></div> -->
+    </div>
+    <!-- <button name="jump" onclick="jump()">Go</button> -->
+
+    <!-- Custom Scripts -->
+    <script src="js/NS.js"></script>
+    <script src="js/NS_AD.js"></script>
+    <script src="js/NS_BS.js"></script>
+    <script src="js/AD_BS.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/index_cal_conv.js"></script>
+    <script src="js/index_details.js"></script>
+    <script src="js/infos.js"></script>
+    <script src="js/suggest_edit.js"></script>
+    <!-- <script src="js/extra/swipe_actions.js"></script> -->
+    <!-- <script src="js/extra/jspdf.min.js"></script> -->
+    <!-- <script src="js/extra/save_to_pdf.js"></script> -->
+    <script src="utils/mousetrap.min.js"></script>
+    <script src="../renderer.js"></script>
+
+    <script>
+    function on_window_resize() {
+      let table = document.getElementById("calendar");
+      if (window.innerWidth > 768) {
+        table.classList.remove("w-auto");
+      }
+      else {
+        table.classList.add("w-auto");
+      }
+    }
+    window.onresize = on_window_resize;
+    on_window_resize()
+    </script>
+
+    <!-- Optional JavaScript for bootstrap -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/third_party/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/third_party/popper.min.js"></script>
+    <script src="js/third_party/bootstrap.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-99TBHKPHDP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-99TBHKPHDP', {
+        cookie_domain: 'brihat-rb.github.io',
+        cookie_flags: 'SameSite=None;Secure',
+      });
+    </script>
+
+    <script>
+      // var remote = require('electron').remote;
+      // var { ipcRenderer } = require('electron');
+
+      // document.getElementById('calendar_mini').addEventListener("dblclick", (event) => {
+      //   ipcRenderer.sendSync('show-full-calendar');
+      //   // win.loadURL('./brihat_calendar.html');
+      //   // win.show();
+      // });
+
+      // document.getElementById("closebtn").addEventListener("click", (event) => {
+      //   ipcRenderer.sendSync('close-full-calendar');
+      // });
+
+    </script>
+
+  </body>
+</html>
