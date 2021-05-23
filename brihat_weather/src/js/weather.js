@@ -3,7 +3,7 @@ let current_lat = 27.6833;
 let current_lon = 85.4167;
 
 function update_weather() {
-  document.getElementById("weather_icon").src = "./loading.svg";
+  document.getElementById("weather_icon").src = "./assets/loading.svg";
   let fields = ["location", "weather_main", "temp", "feels_like", "min_temp", "max_temp", "rain", "snow", "pressure", "humidity", "sunrise", "sunset", "wind", "last_update"];
   fields.forEach(item => document.getElementById(item).innerHTML = "<i class='load fa fa-refresh' aria-hidden='true'></i>");
 
@@ -19,7 +19,7 @@ function update_weather() {
 }
 
 function get_weather() {
-  document.getElementById("weather_icon").src = "./loading.svg";
+  document.getElementById("weather_icon").src = "./assets/loading.svg";
   let fields = ["location", "weather_main", "temp", "feels_like", "min_temp", "max_temp", "rain", "snow", "pressure", "humidity", "sunrise", "sunset", "wind", "last_update"];
   fields.forEach(item => document.getElementById(item).innerHTML = "<i class='load fa fa-refresh' aria-hidden='true'></i>");
 

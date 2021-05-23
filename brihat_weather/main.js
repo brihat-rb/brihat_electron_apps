@@ -107,7 +107,7 @@ function createWindow () {
       zoomFactor: 1.0,
       nodeIntegration: true,
       contextIsolation: false,
-      // devTools: false,
+      devTools: false,
     }
   })
 
@@ -128,7 +128,7 @@ function createWindow () {
 
   // hide the default menu bar that comes with the browser window
   mainWindow.setMenuBarVisibility(null);
-  // mainWindow.setResizable(false);
+  mainWindow.setResizable(false);
 
   mainWindow.on('minimize',function(event){
     event.preventDefault();
