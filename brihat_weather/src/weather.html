@@ -4,8 +4,8 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brihat Weather</title>
-    <link rel="shortcut icon" href="./favicon.svg" id="favicon" />
-	  <link rel="stylesheet" href="./weather.css" />
+    <link rel="shortcut icon" href="assets/favicon.svg" id="favicon" />
+	  <link rel="stylesheet" href="css/weather.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   </head>
   <center><noscript>Please enable JavaScript</noscript></center>
@@ -20,7 +20,7 @@
     </div>
     <div id="div_content">
       <div id="wide">
-        <center><img id="weather_icon" src="./loading.svg" /></center>
+        <center><img id="weather_icon" src="./assets/loading.svg" /></center>
         <input id="city" type="text" placeholder="Enter city (eg. Bhaktapur)" class="mousetrap" autofocus />
         <br class="wide_screen">
         <button id="btn" onclick="get_weather();">Go</button>
@@ -109,10 +109,10 @@
       request.send();
     </script>
 
-    <script type="text/javascript" src="./weather.js"></script>
-    <script type="text/javascript" src="./weatherforecast.js"></script>
-    <script type="text/javascript" src="./pollution.js"></script>
-    <script type="text/javascript" src="./app_info.js"></script>
+    <script type="text/javascript" src="./js/weather.js"></script>
+    <script type="text/javascript" src="./js/weatherforecast.js"></script>
+    <script type="text/javascript" src="./js/pollution.js"></script>
+    <script type="text/javascript" src="./js/app_info.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163547186-2"></script>
@@ -126,8 +126,8 @@
         cookie_flags: 'SameSite=None;Secure',
       });
     </script>
-    <script src="./mousetrap.min.js"></script>
-    <script src="./renderer.js"></script>
+    <script src="./utils/mousetrap.min.js"></script>
+    <script src="../renderer.js"></script>
     <!-- <script>
       // You can also require other files to run in this process
       require('./renderer.js')

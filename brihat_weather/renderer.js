@@ -16,7 +16,7 @@ Mousetrap.bind(['command+r', 'ctrl+r', 'ctrl+shift+r'], () => {
 
 new Notification('Brihat Weather App', {
   body: " started in background",
-  icon: "./brihaticon.png",
+  icon: "./assets/brihaticon.png",
 })
 
 //  CODE 22 - 76 experiment with remote

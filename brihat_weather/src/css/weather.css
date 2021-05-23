@@ -17,7 +17,7 @@
   line-height: 24px;
   font-size: 14px;
   font-weight: bold;
-  background: url('app_logo.svg') 10px 10px;
+  background: url('../assets/app_logo.svg') 10px 10px;
   background-repeat: no-repeat;
   background-size: auto 27px;
 }
@@ -355,7 +355,7 @@ button:hover {
   text-align: center;
   font-family: serif;
   font-size: 18px;
-  background: url('watermark.svg');
+  background: url('../assets/watermark.svg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: auto 70%;

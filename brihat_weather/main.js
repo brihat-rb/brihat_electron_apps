@@ -95,7 +95,7 @@ function createWindow () {
     height: 665,
     x: width - 435,
     y: parseInt((height - 665) / 2) - 10,
-    icon: path.join(__dirname, 'brihaticon.png'),
+    icon: path.join(__dirname, 'src/assets/brihaticon.png'),
     // darkTheme: true,
     maximizable: false,
     frame: false,
@@ -107,7 +107,7 @@ function createWindow () {
       zoomFactor: 1.0,
       nodeIntegration: true,
       contextIsolation: false,
-      devTools: false,
+      // devTools: false,
     }
   })
 
@@ -120,7 +120,7 @@ function createWindow () {
   })
 
   // and load the weather.html of the app and hide
-  mainWindow.loadFile('weather.html')
+  mainWindow.loadFile('src/weather.html')
   mainWindow.hide()
 
   // Open the DevTools.
@@ -128,7 +128,7 @@ function createWindow () {
 
   // hide the default menu bar that comes with the browser window
   mainWindow.setMenuBarVisibility(null);
-  mainWindow.setResizable(false);
+  // mainWindow.setResizable(false);
 
   mainWindow.on('minimize',function(event){
     event.preventDefault();
@@ -147,7 +147,7 @@ function createWindow () {
       }
     }
   ])
-  const icon_path = path.join(__dirname, '/brihaticon.png');
+  const icon_path = path.join(__dirname, 'src/assets/brihaticon.png');
   // tray = new Tray('./brihaticon.png')
   tray = new Tray(icon_path)
   tray.setToolTip('Brihat Weather App v1.0.0')

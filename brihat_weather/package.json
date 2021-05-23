@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A simple weather app",
   "copyright": "Brihat Ratna Bajracharya",
-  "icon": "brihaticon.ico",
+  "icon": "src/assets/brihaticon.ico",
   "main": "main.js",
   "license": "CC0-1.0",
   "scripts": {
@@ -34,7 +34,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "brihaticon.ico",
+        "icon": "src/assets/brihaticon.ico",
         "appCopyright": "Brihat Ratna Bajracharya",
         "win32metadata": {
           "ProductName": "Brihat Weather App",
