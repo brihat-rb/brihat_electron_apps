@@ -90,8 +90,8 @@ function createWindow () {
   let height = display.bounds.height;
 
   const mainWindow = new BrowserWindow({
-    width: 300,
-    height: 71,
+    width: 800,
+    height: 571,
     x: width - 300,
     y: parseInt((height - 71)) - 30,
     icon: path.join(__dirname, 'brihaticon.png'),
@@ -104,7 +104,7 @@ function createWindow () {
       nodeIntegration: true,
       enableRemoteModule: true,
       contextIsolation: false,
-      devTools: false,
+      // devTools: false,
     }
   })
 
@@ -117,7 +117,7 @@ function createWindow () {
 
   // hide the default menu bar that comes with the browser window
   mainWindow.setMenuBarVisibility(null);
-  mainWindow.setResizable(false);
+  // mainWindow.setResizable(false);
 
   mainWindow.on('minimize',function(event){
     event.preventDefault();

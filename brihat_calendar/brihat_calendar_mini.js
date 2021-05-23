@@ -6,19 +6,9 @@ const main_div_ad = document.getElementById("calendar_mini_ad");
 
 const BS_DATE_TODAY = bs_today_year.toString() + "-" + bs_today_month.toString().padStart(2, "0") + "-" + bs_today_date.toString().padStart(2, "0");
 
-const pakshya_data_url = "https://raw.githubusercontent.com/brihat-rb/brihat-rb.github.io/master/brihat_calendar/data/" + bs_today_year.toString() + "_lunar_data.json";
-const pakshya_data_req = new XMLHttpRequest();
-pakshya_data_req.open('GET', pakshya_data_url, false);
-var PAKSHYA_JSON = "{}";
-
-pakshya_data_req.onload = function() {
-  PAKSHYA_JSON = JSON.parse(this.response);
-}
-pakshya_data_req.onerror = function() {
-  console.log("Error fetching Lunar Data.");
-  PAKSHYA_JSON = "{}";
-}
-pakshya_data_req.send();
+const fs = require('fs');
+const path = require('path');
+var PAKSHYA_JSON = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/' + bs_today_year.toString() + '_lunar_data.json')));
 
 today_json = PAKSHYA_JSON[BS_DATE_TODAY];
 

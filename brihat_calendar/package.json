@@ -13,6 +13,7 @@
   },
   "keywords": [
     "brihat",
+    "offline",
     "calendar",
     "AD",
     "BS",
@@ -31,14 +32,15 @@
   },
   "dependencies": {
     "electron-reload": "^1.5.0",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "fs": "0.0.1-security"
   },
   "config": {
     "forge": {
       "packagerConfig": {
         "icon": "brihaticon.ico",
         "appCopyright": "Brihat Ratna Bajracharya",
-        "win32metadata":{
+        "win32metadata": {
           "ProductName": "Brihat Calendar",
           "CompanyName": "Brihat Ratna Bajracharya"
         }
