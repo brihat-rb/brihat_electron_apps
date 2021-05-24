@@ -94,7 +94,7 @@ function createWindow () {
     height: 71,
     x: width - 300,
     y: parseInt((height - 71)) - 30,
-    icon: path.join(__dirname, 'src/assets/brihaticon.png'),
+    icon: path.join(__dirname, 'src/assets/brihat_calendar.png'),
     maximizable: false,
     frame: false,
     skipTaskbar: true,
@@ -131,7 +131,7 @@ function createWindow () {
     // parent: mainWindow,
     // x: width - 350,
     // y: parseInt((height - 700) / 2) - 10,
-    icon: path.join(__dirname, 'src/assets/brihaticon.png'),
+    icon: path.join(__dirname, 'src/assets/brihat_calendar.png'),
     darkTheme: true,
     maximizable: false,
     frame: false,
@@ -239,7 +239,7 @@ function createWindow () {
           type: 'info',
           buttons: ["&Close"],
           title: 'About',
-          icon: path.join(__dirname, 'src/assets/brihaticon.png'),
+          icon: path.join(__dirname, 'src/assets/brihat_calendar.png'),
           message: 'Brihat Calendar (v1.0)',
           noLink: true,
           normalizeAccessKeys: true,
@@ -255,9 +255,9 @@ function createWindow () {
       }
     }
   ])
-  
-  const icon_path = path.join(__dirname, 'src/assets/brihaticon.png');
-  // tray = new Tray('./brihaticon.png')
+
+  const icon_path = path.join(__dirname, 'src/assets/brihat_calendar.png');
+  // tray = new Tray('./brihat_calendar.png')
   tray = new Tray(icon_path)
   tray.setToolTip('Brihat Calendar v1.0')
   tray.setContextMenu(contextMenu)
@@ -301,4 +301,5 @@ else {
   // In this file you can include the rest of your app's specific main process
   // code. You can also put them in separate files and require them here.
   app.setAppUserModelId("Brihat Calendar")
+  app.disableHardwareAcceleration()
 }

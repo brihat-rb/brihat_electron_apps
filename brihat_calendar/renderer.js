@@ -16,5 +16,5 @@ Mousetrap.bind(['command+r', 'ctrl+r', 'ctrl+shift+r'], () => {
 
 // new Notification('Brihat Calendar Started', {
 //   body: "Check Tray Icon for menu",
-//   icon: "assets/brihaticon.png",
+//   icon: "assets/brihat_calendar.png",
 // })
