@@ -118,10 +118,22 @@ function createWindow () {
   // hide the default menu bar that comes with the browser window
   mainWindow.setMenuBarVisibility(null);
   mainWindow.setResizable(false);
+  mainWindow.setContentProtection(true);
 
   mainWindow.on('minimize',function(event){
     event.preventDefault();
     // mainWindow.hide();
+  });
+
+  mainWindow.on('close', function(event) {
+    event.preventDefault();
+    // console.log("close");
+    mainWindow.minimize();
+    mainWindow.hide();
+  });
+
+  mainWindow.on('system-context-menu', function(event) {
+    event.preventDefault();
   });
 
   var full_calendar = new BrowserWindow({
@@ -150,50 +162,56 @@ function createWindow () {
   // full_calendar.show();
   full_calendar.setMenuBarVisibility(false)
   full_calendar.setResizable(false)
+  full_calendar.setContentProtection(true);
 
+  full_calendar.on('close', function(event) {
+    event.preventDefault();
+    // console.log("close");
+    full_calendar.hide();
+  });
 
-  ipcMain.on('show-full-calendar', function () {
-    if(full_calendar.isVisible()) {
-        full_calendar.focus()
-    }
-    else {
-      full_calendar.show()
-    }
-    // full_calendar.on('close', function () {
-    // console.log('I do not want to be closed')
-    // full_calendar.hide()
-    // Unlike usual browsers that a message box will be prompted to users, returning
-    // a non-void value will silently cancel the close.
-    // It is recommended to use the dialog API to let the user confirm closing the
-    // application.
-    // e.returnValue = false // equivalent to `return false` but not recommended
-    // })
-    full_calendar.show()
-  })
+  // ipcMain.on('show-full-calendar', function () {
+  //   if(full_calendar.isVisible()) {
+  //       full_calendar.focus()
+  //   }
+  //   else {
+  //     full_calendar.show()
+  //   }
+  //   // full_calendar.on('close', function () {
+  //   // console.log('I do not want to be closed')
+  //   // full_calendar.hide()
+  //   // Unlike usual browsers that a message box will be prompted to users, returning
+  //   // a non-void value will silently cancel the close.
+  //   // It is recommended to use the dialog API to let the user confirm closing the
+  //   // application.
+  //   // e.returnValue = false // equivalent to `return false` but not recommended
+  //   // })
+  //   full_calendar.show()
+  // })
 
-  ipcMain.on('close-full-calendar', function () {
-    full_calendar.hide()
-    // if(full_calendar.isVisible()) {
-    //     full_calendar.focus()
-    // }
-    // else {
-    //   full_calendar.show()
-    // }
-    // full_calendar.on('close', function () {
-    // console.log('I do not want to be closed')
-    // full_calendar.hide()
-    // // Unlike usual browsers that a message box will be prompted to users, returning
-    // // a non-void value will silently cancel the close.
-    // // It is recommended to use the dialog API to let the user confirm closing the
-    // // application.
-    // // e.returnValue = false // equivalent to `return false` but not recommended
-    // })
-    // full_calendar.show()
-  })
+  // ipcMain.on('close-full-calendar', function () {
+  //   full_calendar.hide()
+  //   // if(full_calendar.isVisible()) {
+  //   //     full_calendar.focus()
+  //   // }
+  //   // else {
+  //   //   full_calendar.show()
+  //   // }
+  //   // full_calendar.on('close', function () {
+  //   // console.log('I do not want to be closed')
+  //   // full_calendar.hide()
+  //   // // Unlike usual browsers that a message box will be prompted to users, returning
+  //   // // a non-void value will silently cancel the close.
+  //   // // It is recommended to use the dialog API to let the user confirm closing the
+  //   // // application.
+  //   // // e.returnValue = false // equivalent to `return false` but not recommended
+  //   // })
+  //   // full_calendar.show()
+  // })
 
   var contextMenu = Menu.buildFromTemplate([
     {
-      label: 'Always on Top',
+      label: 'Date Always on Top',
       type: 'checkbox',
       checked: 'true',
       click: function () {
@@ -202,8 +220,10 @@ function createWindow () {
     },
     {
       label: 'Show/Hide Date', click: function () {
+        mainWindow.reload()
         if(mainWindow.isMinimized()) {
             mainWindow.restore()
+            mainWindow.show()
         }
         else {
           if(full_calendar.isVisible()) {
@@ -219,8 +239,10 @@ function createWindow () {
     },
     {
       label: 'Show/Hide Calendar', click: function () {
+        full_calendar.reload()
         if(mainWindow.isMinimized()) {
             mainWindow.restore()
+            mainWindow.show()
             full_calendar.show()
         }
         else {
