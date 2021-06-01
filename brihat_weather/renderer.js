@@ -87,24 +87,26 @@ function show_weather_notification() {
     let notify_data = JSON.parse(this.response);
 
     if (notify_data.cod == 200) {
-      let body = notify_data.name + " (" + notify_data.sys.country + ")";
-      body += '\n' + notify_data.weather[0].main + " (" + notify_data.weather[0].description + ")";
-      if (notify_data.hasOwnProperty("rain")) {
-        if (notify_data.rain.hasOwnProperty("1h"))
+      if(parseInt(notify_data.weather[0].id) < 700) {
+        let body = notify_data.name + " (" + notify_data.sys.country + ")";
+        body += '\n' + notify_data.weather[0].main + " (" + notify_data.weather[0].description + ")";
+        if (notify_data.hasOwnProperty("rain")) {
+          if (notify_data.rain.hasOwnProperty("1h"))
           body += "\tRain: " + notify_data.rain["1h"] + " mm";
-        else if (notify_data.rain.hasOwnProperty("3h"))
+          else if (notify_data.rain.hasOwnProperty("3h"))
           body += "\tRain: " + notify_data.rain["3h"] + " mm";
-      }
-      body += '\nTemp: ' + notify_data.main.temp + " C (feels like " + notify_data.main.feels_like + " C)";
-      body += '\nHumidity: ' + notify_data.main.humidity + '% \tPressure: ' + notify_data.main.pressure + " hpa";
-      console.log('notification i am here');
-      let notify = new Notification('Weather Update', {
-        body: body,
-        icon: "https://openweathermap.org/img/wn/" + notify_data.weather[0].icon + "@2x.png",
-      });
+        }
+        body += '\nTemp: ' + notify_data.main.temp + " C (feels like " + notify_data.main.feels_like + " C)";
+        body += '\nHumidity: ' + notify_data.main.humidity + '% \tPressure: ' + notify_data.main.pressure + " hpa";
+        console.log('notification i am here');
+        let notify = new Notification('Weather Update', {
+          body: body,
+          icon: "https://openweathermap.org/img/wn/" + notify_data.weather[0].icon + "@2x.png",
+        });
 
-      notify.onclick = function(event) {
-        get_weather();
+        notify.onclick = function(event) {
+          get_weather();
+        }
       }
     }
   }
