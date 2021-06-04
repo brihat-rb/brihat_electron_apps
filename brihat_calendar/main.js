@@ -274,6 +274,7 @@ function createWindow () {
       label: 'Quit', click: function () {
         app.isQuiting = true
         app.quit()
+        app.exit()
       }
     }
   ])
