@@ -76,12 +76,12 @@ function fill_lunar_data(year1, year2) {
     var LUNAR_EVENTS_ONE = LUNAR_EVENTS;
     var LUNAR_EVENTS_TWO = LUNAR_EVENTS;
 
-    if (year1 >= 2076 && year1 <= 2078) {
+    if (year1 >= 2070 && year1 <= 2078) {
       LUNAR_EVENTS_ONE = JSON.parse(fs1.readFileSync(path1.resolve(__dirname, '../data/' + year1.toString() + '_lunar_data.json')));
     }
 
     if (year1 != year2) {
-      if (year2 >= 2076 && year2 <= 2078) {
+      if (year2 >= 2070 && year2 <= 2078) {
         LUNAR_EVENTS_TWO = JSON.parse(fs1.readFileSync(path1.resolve(__dirname, '../data/' + year2.toString() + '_lunar_data.json')));
       }
     }
@@ -172,6 +172,13 @@ function fill_lunar_data(year1, year2) {
     let pakshya_details = document.getElementById("lunar_details");
     if (lunar_month_list.length == 0 || lunar_year_list.length == 0) {
       pakshya_details.innerHTML = "";
+    }
+
+    // temporary code
+    else if ((lunar_month_list.length == 1 || lunar_year_list.length == 1) && lunar_month_list[0] == "") {
+      pakshya_details.innerHTML = "* LUNAR MONTH DETAIL: NA *";
+      pakshya_details.classList.add('pakshya-details-nep');
+      pakshya_details_nep = "* LUNAR MONTH DETAIL: NA *";
     }
     else {
       if (lunar_year_list.length == 1) {
