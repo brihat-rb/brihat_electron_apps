@@ -192,9 +192,9 @@ function show_weather_notification() {
       body += '\n' + notify_data.weather[0].main + " (" + notify_data.weather[0].description + ")";
       if (notify_data.hasOwnProperty("rain")) {
         if (notify_data.rain.hasOwnProperty("1h"))
-          body += "\tRain: " + notify_data.rain["1h"] + " mm";
+          body += " (Rain: " + notify_data.rain["1h"] + " mm)";
         else if (notify_data.rain.hasOwnProperty("3h"))
-          body += "\tRain: " + notify_data.rain["3h"] + " mm";
+          body += " (Rain: " + notify_data.rain["3h"] + " mm)";
       }
       body += '\nTemp: ' + notify_data.main.temp + " C (feels like " + notify_data.main.feels_like + " C)";
       body += '\nHumidity: ' + notify_data.main.humidity + '% \tPressure: ' + notify_data.main.pressure + " hpa";
